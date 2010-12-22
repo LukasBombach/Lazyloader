@@ -17,7 +17,8 @@ Features
 --------
 
 * Lazyload JavaScript & CSS
-* Pass multiple files to the loader and call a callback when all files have been loaded
+* Pass multiple files to the loader
+* Pass a callback that will be called when all files have been loaded
 
 Dependencies
 ------------
@@ -35,7 +36,11 @@ in your head section and call
 
     LazyLoader(Array('your', 'css', 'and', 'js', 'files'), callback);
 
-wherever you need it. Preferibly when the Dom's loaded.
+whenever you need it. Preferibly when the Dom's loaded. If you need seperate callbacks for each file simply call
+
+    LazyLoader(Array('file1'), callback1);
+    LazyLoader(Array('file2'), callback2);
+    LazyLoader(Array('file3', 'file4'), callback3);
 
 Compatibility
 -------------
