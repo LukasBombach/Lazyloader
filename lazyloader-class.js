@@ -51,11 +51,23 @@ function LazyLoader(files, callback) {
 
   /**
    *
+   * @returns {LazyLoader} This instance
+   * @private
+   */
+  this.load = function () {
+    var len = this._files.length;
+    for (var i = 0; i < len; i++) this._loadFile(this._files[i].url)
+    return this;
+  };
+
+  /**
+   *
    * @param {Function} callback The callback the will be called when
    *     all files have been loaded.
    * @returns {LazyLoader} This instance
    */
   this.setCallback = function (callback) {
+    this._callback = callback;
     return this;
   };
 
@@ -65,18 +77,9 @@ function LazyLoader(files, callback) {
    * @returns {LazyLoader} This instance
    */
   this.setFiles = function (files) {
-    return this;
-  };
-
-  /**
-   *
-   * @returns {LazyLoader} This instance
-   * @private
-   */
-  this.load = function () {
-    var len = this._files.length;
-    this._numFilesLoading = 0;
-    for (var i = 0; i < len; i++) this._loadFile(this._files[i])
+    var len = files.length;
+    this._files = [];
+    for (var i = 0; i < len; i++) this._files.push({ url:files[i], loaded:false });
     return this;
   };
 
@@ -99,7 +102,6 @@ function LazyLoader(files, callback) {
    * @private
    */
   this._loadScript = function (url) {
-    this._numFilesLoading++;
     this._appendScript(url);
     return this;
   };
@@ -111,7 +113,6 @@ function LazyLoader(files, callback) {
    * @private
    */
   this._loadStylesheet = function (url) {
-    this._numFilesLoading++;
     this._appendStylesheet(url);
     return this;
   };
