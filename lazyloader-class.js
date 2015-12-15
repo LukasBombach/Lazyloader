@@ -187,11 +187,17 @@ function LazyLoader(files, callback) {
 
   /**
    *
+   * @param {string} url
    * @returns {LazyLoader} This instance
    * @private
    */
-  this._decrementAndCallGlobalCallback = function () {
-    if (--this._numFilesLoading === 0) this._callback();
+  this._setLoaded = function (url) {
+    var allFilesHaveBeenLoaded = true;
+    for (var key in this._files) {
+      if (this._files[key].url === url) this._files[key].loaded = true;
+      allFilesHaveBeenLoaded = allFilesHaveBeenLoaded && this._files[key].loaded;
+    }
+    if (allFilesHaveBeenLoaded) this._callback();
     return this;
   };
 
