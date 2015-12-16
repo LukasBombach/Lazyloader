@@ -15,6 +15,7 @@ function LazyLoader(files, callback) {
   this.setCallback(callback);
   this.setFiles(args);
 
+  this._setBrowserCssOnLoadSupport();
   this.load();
 
 }
@@ -127,7 +128,7 @@ function LazyLoader(files, callback) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = url;
-    script.onload = this._getScriptLoadedMethod(url);
+    script.onload = this._getUrlLoadedMethod(url);
     this._appendToHead(script);
     return this;
   };
@@ -139,13 +140,14 @@ function LazyLoader(files, callback) {
    * @private
    */
   this._appendStylesheet = function (url) {
-    var link = document.createElement("link");
-    link.href = url;
-    link.rel = 'stylesheet';
-    link.type = 'text/css';
-    link.onload = this._setLoaded.bind(this);
-    link.onreadystatechange = this._getOnReadyStateChangeCallback();
-    this._appendToHead(link);
+    var stylesheet = document.createElement("link");
+    stylesheet.href = url;
+    stylesheet.rel = 'stylesheet';
+    stylesheet.type = 'text/css';
+    stylesheet.onload = this._getUrlLoadedMethod(url);
+    stylesheet.onreadystatechange = this._getOnReadyStateChangeCallback(url);
+    this._appendToHead(stylesheet);
+    if (!this._cssOnLoadSupport) this._pollStylesheet(stylesheet);
     return this;
   };
 
@@ -174,14 +176,14 @@ function LazyLoader(files, callback) {
 
   /**
    *
+   * @param {string} url
    * @returns {Function}
    * @private
    */
-  this._getOnReadyStateChangeCallback = function () {
+  this._getOnReadyStateChangeCallback = function (url) {
     var self = this;
     return function () {
-      if (['loaded', 'complete'].indexOf(this.readyState) > -1)
-        self._decrementAndCallGlobalCallback();
+      if (['loaded', 'complete'].indexOf(this.readyState) > -1) self._setLoaded(url);
     };
   };
 
@@ -191,8 +193,27 @@ function LazyLoader(files, callback) {
    * @returns {function(this:*)}
    * @private
    */
-  this._getScriptLoadedMethod = function (url) {
+  this._getUrlLoadedMethod = function (url) {
     return function () { this._setLoaded(url) }.bind(this);
+  };
+
+  /**
+   *
+   * @param {Element} stylesheet
+   * @returns {LazyLoader} This instance
+   * @private
+   */
+  this._pollStylesheet = function (stylesheet) {
+    try {
+      if (stylesheet.cssRules || (stylesheet.rules && stylesheet.rules.length))
+        this._setLoaded(stylesheet.getAttribute('href'));
+      else
+        setTimeout(function() { this._pollStylesheet(stylesheet);}.bind(this), 200);
+    }
+    catch(e) {
+      setTimeout(function() { this._pollStylesheet(stylesheet); }.bind(this), 200);
+    }
+    return this;
   };
 
   /**
@@ -220,6 +241,21 @@ function LazyLoader(files, callback) {
   this._isFunction = function(functionToCheck) {
     var getType = {};
     return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+  };
+
+  /**
+   *
+   * @returns {LazyLoader} This instance
+   * @private
+   */
+  this._setBrowserCssOnLoadSupport = function () {
+    var link = document.createElement("link");
+    link.href = '//foo.css';
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.setAttribute('onload', 'return;');
+    this._cssOnLoadSupport = typeof link.onload === 'function';
+    return this;
   };
 
   /**
