@@ -2,8 +2,8 @@
 
 /**
  *
- * @param {...string} files Any number of URLs to load
- * @param {Function} callback The callback the will be called when
+ * @param {...string} [files] Any number of URLs to load
+ * @param {Function} [callback] The callback the will be called when
  *     all files have been loaded.
  * @constructor
  */
