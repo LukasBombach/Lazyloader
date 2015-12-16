@@ -127,7 +127,7 @@ function LazyLoader(files, callback) {
     var script = document.createElement('script');
     script.type = 'text/javascript';
     script.src = url;
-    script.onload = this._decrementAndCallGlobalCallback.bind(this);
+    script.onload = this._getScriptLoadedMethod(url);
     this._appendToHead(script);
     return this;
   };
@@ -143,7 +143,7 @@ function LazyLoader(files, callback) {
     link.href = url;
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.onload = this._decrementAndCallGlobalCallback.bind(this);
+    link.onload = this._setLoaded.bind(this);
     link.onreadystatechange = this._getOnReadyStateChangeCallback();
     this._appendToHead(link);
     return this;
@@ -183,6 +183,16 @@ function LazyLoader(files, callback) {
       if (['loaded', 'complete'].indexOf(this.readyState) > -1)
         self._decrementAndCallGlobalCallback();
     };
+  };
+
+  /**
+   *
+   * @param {string} url
+   * @returns {function(this:*)}
+   * @private
+   */
+  this._getScriptLoadedMethod = function (url) {
+    return function () { this._setLoaded(url) }.bind(this);
   };
 
   /**
