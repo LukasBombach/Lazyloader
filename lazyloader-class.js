@@ -41,14 +41,14 @@ function LazyLoader(files, callback) {
    * @type {RegExp}
    * @private
    */
-  this._CSS_REGEX = /(\.css|\.less)$/i;
+  this._CSS_REGEX = /(\.css|\.less)/i;
 
   /**
    *
    * @type {RegExp}
    * @private
    */
-  this._JS_REGEX = /(\.js|\.es6|\.es|\.jsx)$/i;
+  this._JS_REGEX = /(\.js|\.es6|\.es|\.jsx)/i;
 
   /**
    *
