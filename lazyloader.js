@@ -56,7 +56,7 @@
     this.setFiles(args);
 
     this._setBrowserCssOnLoadSupport();
-    window.setTimeout(this.load.bind(this), 0);
+    window.setTimeout(this._load.bind(this), 0);
 
   }
 
@@ -111,19 +111,6 @@
     this._JS_REGEX = /(\.js|\.es6|\.es|\.jsx)/i;
 
     /**
-     * Will load all files set with {@link LukesLazyLoader} and
-     * {@link LukesLazyLoader#setFiles}.
-     *
-     * @returns {LukesLazyLoader} This instance
-     * @private
-     */
-    this.load = function () {
-      var len = this._files.length;
-      for (var i = 0; i < len; i++) this._loadFile(this._files[i].url)
-      return this;
-    };
-
-    /**
      * Sets the files that will be loaded with {@link LukesLazyLoader#load}.
      *
      * @param {string[]|...string} files Any number of URLs to load. Pass
@@ -161,6 +148,19 @@
      */
     this.thenLoad = function (files, callback) {
       this._addToLoadQueue(new LukesLazyLoader(files, callback));
+      return this;
+    };
+
+    /**
+     * Will load all files set with {@link LukesLazyLoader} and
+     * {@link LukesLazyLoader#setFiles}.
+     *
+     * @returns {LukesLazyLoader} This instance
+     * @private
+     */
+    this._load = function () {
+      var len = this._files.length;
+      for (var i = 0; i < len; i++) this._loadFile(this._files[i].url)
       return this;
     };
 
