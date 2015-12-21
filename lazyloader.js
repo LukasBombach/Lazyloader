@@ -50,17 +50,18 @@
 
     var args = Array.prototype.slice.call(arguments);
     callback = this._isFunction(args[args.length - 1]) ? args.pop() : this._noop;
+    this._callbacks = [];
 
-    this.setCallback(callback);
+    this._addCallback(callback);
     this.setFiles(args);
 
     this._setBrowserCssOnLoadSupport();
-    this.load();
+    window.setTimeout(this.load.bind(this), 0);
 
   }
-
+  
   /**
-   * Class implementation
+   * Instance implementation
    */
   (function () {
 
@@ -110,19 +111,6 @@
     };
 
     /**
-     * Sets the callback function will be called when all files have
-     * been loaded.
-     *
-     * @param {Function} callback The callback that will be called when
-     *     all files have been loaded.
-     * @returns {LukesLazyLoader} This instance
-     */
-    this.setCallback = function (callback) {
-      this._callback = callback;
-      return this;
-    };
-
-    /**
      * Sets the files that will be loaded with {@link LukesLazyLoader#load}.
      *
      * @param {string[]|...string} files Any number of URLs to load. Pass
@@ -134,6 +122,19 @@
       files = Array.isArray(files) ? files : Array.prototype.slice.call(arguments);
       this._files = [];
       for (var i = 0; i < len; i++) this._files.push({url: files[i], loaded: false});
+      return this;
+    };
+
+    /**
+     * Adds a callback function that will be called when all files have finished
+     * loading
+     *
+     * @param {Function} callback The function that will be called when all files
+     *     have finished loading
+     * @returns {LukesLazyLoader} This instance
+     */
+    this.then = function (callback) {
+      this._addCallback(callback);
       return this;
     };
 
@@ -286,7 +287,7 @@
         if (this._files[key].url === url) this._files[key].loaded = true;
         allFilesHaveBeenLoaded = allFilesHaveBeenLoaded && this._files[key].loaded;
       }
-      if (allFilesHaveBeenLoaded) this._callback();
+      if (allFilesHaveBeenLoaded) this._invokeCallbacks();
       return this;
     };
 
@@ -315,6 +316,32 @@
       link.type = 'text/css';
       link.setAttribute('onload', 'return;');
       this._cssOnLoadSupport = typeof link.onload === 'function';
+      return this;
+    };
+
+    /**
+     * Adds a function to the list of callbacks to be called when all files
+     * have finished loading.
+     *
+     * @param {Function} callback A callback function that will be called
+     *     when all files have finished loading
+     * @returns {LukesLazyLoader} This instance
+     * @private
+     */
+    this._addCallback = function (callback) {
+      this._callbacks.push(callback);
+      return this;
+    };
+
+    /**
+     * Invokes all callbacks added by {@link LukesLazyLoader#_addCallback}
+     *
+     * @returns {LukesLazyLoader} This instance
+     * @private
+     */
+    this._invokeCallbacks = function () {
+      var len = this._callbacks.length;
+      for (var i = 0; i < len; i++) this._callbacks[i]();
       return this;
     };
 
