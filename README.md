@@ -31,9 +31,6 @@ bower install lukeslazyloader
 
 Or [download `lazyloader.js` from GitHub](https://raw.githubusercontent.com/LukasBombach/Lazyloader/master/lazyloader.js).
 
-Usage
------
-
 Use a script node, AMD or CommonJs (with Webpack, Browserify, …)
 
 ```html
@@ -46,7 +43,8 @@ require(["bower_components/lukeslazyloader/lazyloader"], function(lukeslazyloade
 var LukesLazyLoader = require("bower_components/lukeslazyloader/lazyloader");
 ```
 
-Then call
+Usage
+-----
 
 ```javascript
 new LazyLoader('your', 'css', 'and', 'js', 'files', callback);
