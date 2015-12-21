@@ -59,7 +59,20 @@
     window.setTimeout(this.load.bind(this), 0);
 
   }
-  
+
+  /**
+   * Preferred public API for loading files
+   *
+   * @param {...string} [files] Optional. Any number of URLs to load
+   * @param {Function} [callback] Optional. The callback the will be
+   *     called when all files have been loaded.
+   * @returns {LukesLazyLoader} A new LukesLazyLoader instance
+   * @static
+   */
+  LukesLazyLoader.load = function (files, callback) {
+    return new LukesLazyLoader(files, callback);
+  };
+
   /**
    * Instance implementation
    */
@@ -135,6 +148,19 @@
      */
     this.then = function (callback) {
       this._addCallback(callback);
+      return this;
+    };
+
+    /**
+     * Will load the given files after
+     *
+     * @param {...string} [files] Optional. Any number of URLs to load
+     * @param {Function} [callback] Optional. The callback the will be
+     *     called when all files (passed to this method) have been loaded.
+     * @returns {LukesLazyLoader} This instance
+     */
+    this.thenLoad = function (files, callback) {
+      this._addToLoadQueue(new LukesLazyLoader(files, callback));
       return this;
     };
 
