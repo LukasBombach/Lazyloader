@@ -37,14 +37,14 @@ Put
 on your website. And call
 
 ```javascript
-LazyLoader('your', 'css', 'and', 'js', 'files', callback);
+new LazyLoader('your', 'css', 'and', 'js', 'files', callback);
 ```
 whenever you need it. If you need seperate callbacks for each file simply call
 
 ```javascript
-LazyLoader('file1', callback1);
-LazyLoader('file2', callback2);
-LazyLoader('file3' 'file4', callback3);
+new LazyLoader('file1', callback1);
+new LazyLoader('file2', callback2);
+new LazyLoader('file3' 'file4', callback3);
 ```
 
 Compatibility
