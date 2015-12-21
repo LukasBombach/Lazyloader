@@ -6,11 +6,11 @@
 (function (root, factory) {
 
   if (typeof define === 'function' && define.amd) {
-    define(['lukeslazyloader'], factory);
+    define(['LukesLazyLoader'], factory);
   } else if (typeof module === 'object' && module.exports) {
     module.exports = factory();
   } else {
-    root.LazyLoader = factory();
+    root.LukesLazyLoader = factory();
   }
 
 }(this, function () {
@@ -32,12 +32,12 @@
    * JavaScript: *.js *.es6 *.es *.jsx
    *
    * Any other file extension will not be loaded. If you need another
-   * file type edit {@link LazyLoader#_CSS_REGEX} and
-   * {@link LazyLoader#_JS_REGEX}.
+   * file type edit {@link LukesLazyLoader#_CSS_REGEX} and
+   * {@link LukesLazyLoader#_JS_REGEX}.
    *
    * Example:
    *
-   * new LazyLoader('/my/js/file.js', '//server.com/css/file.css', function() {
+   * new LukesLazyLoader('/my/js/file.js', '//server.com/css/file.css', function() {
    *   console.log('All files have been loaded');
    * });
    *
@@ -46,7 +46,7 @@
    *     called when all files have been loaded.
    * @constructor
    */
-  function LazyLoader(files, callback) {
+  function LukesLazyLoader(files, callback) {
 
     var args = Array.prototype.slice.call(arguments);
     callback = this._isFunction(args[args.length - 1]) ? args.pop() : this._noop;
@@ -97,10 +97,10 @@
     this._JS_REGEX = /(\.js|\.es6|\.es|\.jsx)/i;
 
     /**
-     * Will load all files set with {@link LazyLoader} and
-     * {@link LazyLoader#setFiles}.
+     * Will load all files set with {@link LukesLazyLoader} and
+     * {@link LukesLazyLoader#setFiles}.
      *
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      * @private
      */
     this.load = function () {
@@ -115,7 +115,7 @@
      *
      * @param {Function} callback The callback that will be called when
      *     all files have been loaded.
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      */
     this.setCallback = function (callback) {
       this._callback = callback;
@@ -123,11 +123,11 @@
     };
 
     /**
-     * Sets the files that will be loaded with {@link LazyLoader#load}.
+     * Sets the files that will be loaded with {@link LukesLazyLoader#load}.
      *
      * @param {string[]|...string} files Any number of URLs to load. Pass
      *     URLs as an array of strings or as multiple parameters (strings)
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      */
     this.setFiles = function (files) {
       var len = files.length;
@@ -141,7 +141,7 @@
      * Will detect the file type of a URL and load it with a link or script tag.
      *
      * @param {string} url The URL to load
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      * @private
      */
     this._loadFile = function (url) {
@@ -155,7 +155,7 @@
      * and set up callbacks.
      *
      * @param {string} url The URL to load
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      * @private
      */
     this._appendScript = function (url) {
@@ -173,7 +173,7 @@
      * that do not support onload events.
      *
      * @param {string} url The URL to load
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      * @private
      */
     this._appendStylesheet = function (url) {
@@ -192,7 +192,7 @@
      * Will append an element to the head of the page.
      *
      * @param {Element} el The element to append to the head of the page
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      * @private
      */
     this._appendToHead = function (el) {
@@ -202,12 +202,12 @@
 
     /**
      * Will detect if a URL points to a CSS or JavaScript file and return
-     * either {@link LazyLoader#_TYPE_CSS} or {@link LazyLoader#_TYPE_JS}
+     * either {@link LukesLazyLoader#_TYPE_CSS} or {@link LukesLazyLoader#_TYPE_JS}
      * or null if no file type could be detected.
      *
      * @param {string} url The URL to test
-     * @returns {string|null} Either {@link LazyLoader#_TYPE_CSS} or
-     *     {@link LazyLoader#_TYPE_JS} depending on the file type. Will
+     * @returns {string|null} Either {@link LukesLazyLoader#_TYPE_CSS} or
+     *     {@link LukesLazyLoader#_TYPE_JS} depending on the file type. Will
      *     return null if no file type could be detected.
      * @private
      */
@@ -249,10 +249,10 @@
 
     /**
      * Will poll a given stylesheet for its CSS rules to detect if it has been loaded
-     * and call {@link LazyLoader#_setLoaded} once it succeeds.
+     * and call {@link LukesLazyLoader#_setLoaded} once it succeeds.
      *
      * @param {Element} stylesheet The stylesheet to be polled
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      * @private
      */
     this._pollStylesheet = function (stylesheet) {
@@ -277,7 +277,7 @@
      * the callback once all files have been loaded.
      *
      * @param {string} url The URL of the file that has been loaded
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      * @private
      */
     this._setLoaded = function (url) {
@@ -305,7 +305,7 @@
     /**
      * Detects if a browser supports the onload-attribute on link tag.
      *
-     * @returns {LazyLoader} This instance
+     * @returns {LukesLazyLoader} This instance
      * @private
      */
     this._setBrowserCssOnLoadSupport = function () {
@@ -326,11 +326,11 @@
     this._noop = function () {
     };
 
-  }).call(LazyLoader.prototype);
+  }).call(LukesLazyLoader.prototype);
 
   /**
    * Return the class to be used by AMD, CommonJS or the browser
    */
-  return LazyLoader;
+  return LukesLazyLoader;
 
 }));
