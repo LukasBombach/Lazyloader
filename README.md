@@ -16,11 +16,11 @@ Behnam Taraghi (http://tugll.tugraz.at/96784/) had a clever idea to fix the Fire
 Features
 --------
 
-* Lazyload JavaScript & CSS
-* Pass multiple files to the loader
-* Pass a callback that will be called when all files have been loaded
-* Use Bower, AMD or CommonJs
-* Tiny code, no dependencies
+* [x] Lazyload JavaScript & CSS
+* [x] Pass multiple files to the loader
+* [x] Pass a callback that will be called when all files have been loaded
+* [x] Use Bower, AMD or CommonJs
+* [x] Tiny code, no dependencies
 
 Installation
 ------------
@@ -47,14 +47,14 @@ Usage
 -----
 
 ```javascript
-new LazyLoader('your', 'css', 'and', 'js', 'files', callback);
+new LukesLazyLoader('your', 'css', 'and', 'js', 'files', callback);
 ```
 whenever you need it. If you need seperate callbacks for each file simply call
 
 ```javascript
-new LazyLoader('file1', callback1);
-new LazyLoader('file2', callback2);
-new LazyLoader('file3' 'file4', callback3);
+new LukesLazyLoader('file1', callback1);
+new LukesLazyLoader('file2', callback2);
+new LukesLazyLoader('file3' 'file4', callback3);
 ```
 
 Compatibility
