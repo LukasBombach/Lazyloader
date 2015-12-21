@@ -47,7 +47,7 @@ Usage
 -----
 
 ```javascript
-LukesLazyLoader.load('your', 'css', 'and', 'js', 'files').then(callback);
+LukesLazyLoader.load('your', 'css', 'and', 'js', 'files').then(callback).then(anotherCallback);
 ```
 whenever you need it. If you need seperate callbacks for each file simply call
 
