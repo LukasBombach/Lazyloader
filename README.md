@@ -47,14 +47,14 @@ Usage
 -----
 
 ```javascript
-new LazyLoader('your', 'css', 'and', 'js', 'files', callback);
+new LukesLazyLoader('your', 'css', 'and', 'js', 'files', callback);
 ```
 whenever you need it. If you need seperate callbacks for each file simply call
 
 ```javascript
-new LazyLoader('file1', callback1);
-new LazyLoader('file2', callback2);
-new LazyLoader('file3' 'file4', callback3);
+new LukesLazyLoader('file1', callback1);
+new LukesLazyLoader('file2', callback2);
+new LukesLazyLoader('file3' 'file4', callback3);
 ```
 
 Compatibility
