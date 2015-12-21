@@ -37,7 +37,7 @@ Use a script node, AMD or CommonJs (with Webpack, Browserify, …)
 <script src="bower_components/lukeslazyloader/lazyloader.js"></script>
 ```
 ```javascript
-require(["bower_components/lukeslazyloader/lazyloader"], function(lukeslazyloader) { });
+require(["bower_components/lukeslazyloader/lazyloader"], function(LukesLazyLoader) { });
 ```
 ```javascript
 var LukesLazyLoader = require("bower_components/lukeslazyloader/lazyloader");
