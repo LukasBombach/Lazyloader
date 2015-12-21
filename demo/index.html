@@ -6,10 +6,16 @@
 </head>
 <body>
     <script src="../lazyloader.js"></script>
-    <script>new LukesLazyLoader('http://localhost:8080/500-f00.css',
+    <script>
+
+        var loader = new LukesLazyLoader('http://localhost:8080/500-f00.css',
             'http://localhost:8080/1500-javascript.js',
-            'http://localhost:8080/2500-00f.css', function () {
-                console.log('all files have been loaded');
-            });</script>
+            'http://localhost:8080/2500-00f.css');
+
+        loader.then(function () {
+            console.log('all files have been loaded');
+        });
+
+    </script>
 </body>
 </html>
