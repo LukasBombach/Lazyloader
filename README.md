@@ -22,10 +22,8 @@ Features
 * Use Bower, AMD or CommonJs
 * Tiny code, no dependencies
 
-Usage
------
-
-Use Bower
+Installation
+------------
 
 ```shell
 bower install lukeslazyloader
@@ -33,21 +31,17 @@ bower install lukeslazyloader
 
 Or [download `lazyloader.js` from GitHub](https://raw.githubusercontent.com/LukasBombach/Lazyloader/master/lazyloader.js).
 
-Then
+Usage
+-----
+
+Use a script node, AMD or CommonJs (with Webpack, Browserify, …)
 
 ```html
 <script src="bower_components/lukeslazyloader/lazyloader.js"></script>
 ```
-
-or use AMD
-
 ```javascript
-require(["bower_components/lukeslazyloader/lazyloader"], function(lukeslazyloader) {
-});
+require(["bower_components/lukeslazyloader/lazyloader"], function(lukeslazyloader) { });
 ```
-
-or use CommonJs (Webpack, Browserify, …)
-
 ```javascript
 var LukesLazyLoader = require("bower_components/lukeslazyloader/lazyloader");
 ```
