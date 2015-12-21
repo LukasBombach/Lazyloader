@@ -1,0 +1,26 @@
+{
+  "name": "lukeslazyloader",
+  "main": "lazyloader.js",
+  "homepage": "https://github.com/LukasBombach/Lazyloader",
+  "authors": [
+    "Lukas Bombach <lukas.bombach@googlemail.com>"
+  ],
+  "description": "A tiny JavaScript/CSS lazyloader that also calls callbacks for CSS-Files.",
+  "moduleType": [
+    "amd",
+    "globals"
+  ],
+  "keywords": [
+    "lazy",
+    "loading"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "demo"
+  ]
+}
