@@ -23,24 +23,29 @@ Features
 Dependencies
 ------------
 
-**None.** I use jQuey in the demo, but it's not part of the loader.
+*None.*
 
 Usage
 -----
 
 Put
 
-    <script src="lazyloader.js"></script>
+```html
+<script src="lazyloader.js"></script>
+```
 
-in your head section and call
+on your website. And call
 
-    LazyLoader(Array('your', 'css', 'and', 'js', 'files'), callback);
+```javascript
+LazyLoader('your', 'css', 'and', 'js', 'files', callback);
+```
+whenever you need it. If you need seperate callbacks for each file simply call
 
-whenever you need it. Preferibly when the Dom's loaded. If you need seperate callbacks for each file simply call
-
-    LazyLoader(Array('file1'), callback1);
-    LazyLoader(Array('file2'), callback2);
-    LazyLoader(Array('file3', 'file4'), callback3);
+```javascript
+LazyLoader('file1', callback1);
+LazyLoader('file2', callback2);
+LazyLoader('file3' 'file4', callback3);
+```
 
 Compatibility
 -------------
@@ -51,8 +56,3 @@ I've tested this with
 * Firefox 3.6
 * Opera 10.10
 * Internet Explorer 6, 7, 8
-
-Known issues
-------------
-
-* IE6 seems to call the callback twice if it has files you try to load already in its cache.
