@@ -56,3 +56,10 @@ I've tested this with
 * Firefox 3.6
 * Opera 10.10
 * Internet Explorer 6, 7, 8
+
+Todo
+----
+
+* [ ] Bower, AMD, etc
+* [ ] Promises
+* [ ] Chainability to successively load files
