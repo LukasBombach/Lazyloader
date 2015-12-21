@@ -63,3 +63,4 @@ Todo
 * [ ] Bower, AMD, etc
 * [ ] Promises
 * [ ] Chainability to successively load files
+* [ ] Tests
