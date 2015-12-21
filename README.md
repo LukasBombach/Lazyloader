@@ -19,6 +19,7 @@ Features
 * Lazyload JavaScript & CSS
 * Pass multiple files to the loader
 * Pass a callback that will be called when all files have been loaded
+* Use Bower, AMD or CommonJs
 * Tiny code, no dependencies
 
 Usage
