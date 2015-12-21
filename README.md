@@ -61,7 +61,6 @@ I've tested this with
 Todo
 ----
 
-* [ ] AMD
 * [ ] Promises
 * [ ] Chainability to successively load files
 * [ ] Minification
