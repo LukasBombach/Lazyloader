@@ -28,7 +28,9 @@ Dependencies
 Usage
 -----
 
-Put
+```bash
+bower install lukeslazyloader
+```
 
 ```html
 <script src="lazyloader.js"></script>
