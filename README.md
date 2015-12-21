@@ -28,15 +28,18 @@ Dependencies
 Usage
 -----
 
-```bash
+Bower:
+
+```shell
 bower install lukeslazyloader
 ```
-
 ```html
-<script src="lazyloader.js"></script>
+<script src="bower_components/lukeslazyloader/lazyloader.js"></script>
 ```
 
-on your website. And call
+Or [download `lazyloader.js` from GitHub](https://raw.githubusercontent.com/LukasBombach/Lazyloader/master/lazyloader.js).
+
+Then call
 
 ```javascript
 new LazyLoader('your', 'css', 'and', 'js', 'files', callback);
@@ -62,7 +65,7 @@ I've tested this with
 Todo
 ----
 
-* [ ] Bower, AMD, etc
+* [ ] AMD
 * [ ] Promises
 * [ ] Chainability to successively load files
 * [ ] Tests
