@@ -47,14 +47,14 @@ Usage
 -----
 
 ```javascript
-new LukesLazyLoader('your', 'css', 'and', 'js', 'files', callback);
+LukesLazyLoader.load('your', 'css', 'and', 'js', 'files').then(callback);
 ```
 whenever you need it. If you need seperate callbacks for each file simply call
 
 ```javascript
-new LukesLazyLoader('file1', callback1);
-new LukesLazyLoader('file2', callback2);
-new LukesLazyLoader('file3' 'file4', callback3);
+LukesLazyLoader.load('file1').then(callback1);
+LukesLazyLoader.load('file2').then(callback2);
+LukesLazyLoader.load('file3' 'file4').then(callback3);
 ```
 
 Compatibility
@@ -70,7 +70,7 @@ I've tested this with
 Todo
 ----
 
-* [ ] Promises
+* [ ] Improve API
 * [ ] Chainability to successively load files
 * [ ] Minification
 * [ ] Tests
