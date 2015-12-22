@@ -74,6 +74,7 @@ Todo
 * [ ] Chainability to successively load files
 * [ ] Minification
 * [ ] Tests
+* [ ] Improve Demo
  
 License
 -------
