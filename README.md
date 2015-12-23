@@ -72,6 +72,7 @@ Todo
 
 * [ ] Improve API
 * [ ] Chainability to successively load files
+* [ ] Integration with [q](https://github.com/kriskowal/q)
 * [ ] Minification
 * [ ] Tests
 * [ ] Improve Demo
